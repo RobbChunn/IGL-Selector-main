@@ -32,6 +32,7 @@ import Wingman from "../images/weapons/Wingman.png";
 // Legends
 import Ash from "../images/legends/ash.png";
 import Bangalore from "../images/legends/bangalore.png";
+import Ballistic from "../images/legends/Ballistic.png";
 import Bloodhound from "../images/legends/bloodhound.png";
 import Caustic from "../images/legends/caustic.png";
 import Catalyst from "../images/legends/catalyst.png";
@@ -220,6 +221,10 @@ export const legends = [
   {
     legend: "Bangalore",
     img: Bangalore,
+  },
+  {
+    legend: "Ballistic",
+    img: Ballistic,
   },
   {
     legend: "Bloodhound",

@@ -20,6 +20,7 @@ const Form = () => {
   const [loadout, setLoadout] = useState([]);
   const [poi, setPoi] = useState("");
   const [randomPoi, setRandomPoi] = useState("");
+  const [selectIgl, setIgl] = useState("");
 
   useEffect(() => {}, [loadoutLoaded]);
 
@@ -35,12 +36,43 @@ const Form = () => {
     setUsername3(e.target.value);
   };
 
+  const usernames = [username1, username2, username3];
+
+  // const getIgl = () => {
+  //   let randomIgl;
+  //   if (username3 == false) {
+  //     randomIgl = Math.floor(Math.random() * usernames.length);
+  //   }
+  //   console.log(randomIgl);
+  //   setIgl(randomIgl);
+  // };
+
+  const getIgl = () => {
+    let randomIgl;
+    if (!username3) {
+      randomIgl = Math.floor(Math.random() * usernames.length);
+    } else {
+      randomIgl = Math.floor(Math.random() * (usernames.length));
+    }
+    const igl = usernames[randomIgl];
+    console.log(igl);
+    setIgl(igl);
+  };
+  
+
   const handleSubmission = (e) => {
     e.preventDefault();
     setLoadoutLoaded(true);
     generateLoadout();
     // console.table(generateLoadout());
   };
+
+  // const getIgl = () => {
+  //   const randomIgl = Math.floor(Math.random() * usernames.length);
+  //   const randomUsername = usernames[randomIgl];
+  //   console.log(randomUsername);
+  //   setIgl(randomUsername);
+  // };
 
   const getPrimaryWeapon = () => {
     let primaryLoadoutData =
@@ -78,8 +110,7 @@ const Form = () => {
       pointOfInterest =
         KingsCanyon[Math.floor(Math.random() * KingsCanyon.length)];
     } else if (poi === "Olympus") {
-      pointOfInterest = 
-        Olympus[Math.floor(Math.random() * Olympus.length)];
+      pointOfInterest = Olympus[Math.floor(Math.random() * Olympus.length)];
     } else if (poi === "StormPoint") {
       pointOfInterest =
         StormPoint[Math.floor(Math.random() * StormPoint.length)];
@@ -87,7 +118,7 @@ const Form = () => {
       pointOfInterest =
         WorldsEdge[Math.floor(Math.random() * WorldsEdge.length)];
     } else if (poi === "BrokenMoon") {
-      pointOfInterest = 
+      pointOfInterest =
         BrokenMoon[Math.floor(Math.random() * BrokenMoon.length)];
     } else {
       console.debug("there is no point");
@@ -98,6 +129,7 @@ const Form = () => {
 
   const generateLoadout = () => {
     getPOI();
+    getIgl();
     let loadOutForAllTeamMembers = [
       {
         username: username1,
@@ -134,7 +166,7 @@ const Form = () => {
         ) : (
           <>
             <h1 class="text-2xl font-bold text-center text-indigo-600 sm:text-3xl">
-              Enter in your teammates
+              Enter teammates below:
             </h1>
             <form
               action=""
@@ -164,7 +196,7 @@ const Form = () => {
                     onChange={updateUsername1}
                     required={true}
                   />
-                  
+
                   <span class="absolute inset-y-0 inline-flex items-center right-4">
                     <GiPistolGun />
                   </span>
@@ -373,7 +405,7 @@ const Form = () => {
               </span>
             </button>
           </div>
-          <LoadoutGrid loadouts={loadout} poi={randomPoi} />
+          <LoadoutGrid loadouts={loadout} poi={randomPoi} selectIgl={selectIgl} />
         </>
       )}
     </div>

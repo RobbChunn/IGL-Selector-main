@@ -37,16 +37,7 @@ const Form = () => {
   };
 
   const usernames = [username1, username2, username3];
-
-  // const getIgl = () => {
-  //   let randomIgl;
-  //   if (username3 == false) {
-  //     randomIgl = Math.floor(Math.random() * usernames.length);
-  //   }
-  //   console.log(randomIgl);
-  //   setIgl(randomIgl);
-  // };
-
+  // Enter the people playing and select one at random as IGL
   const getIgl = () => {
     let randomIgl;
     if (!username3) {
@@ -59,20 +50,12 @@ const Form = () => {
     setIgl(igl);
   };
   
-
   const handleSubmission = (e) => {
     e.preventDefault();
     setLoadoutLoaded(true);
     generateLoadout();
     // console.table(generateLoadout());
   };
-
-  // const getIgl = () => {
-  //   const randomIgl = Math.floor(Math.random() * usernames.length);
-  //   const randomUsername = usernames[randomIgl];
-  //   console.log(randomUsername);
-  //   setIgl(randomUsername);
-  // };
 
   const getPrimaryWeapon = () => {
     let primaryLoadoutData =

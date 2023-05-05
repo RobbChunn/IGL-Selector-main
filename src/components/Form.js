@@ -78,8 +78,16 @@ const Form = () => {
     return data;
   };
 
+  const legendsCopy = legends.slice();
+
   const getLegend = () => {
-    let selectALegend = legends[Math.floor(Math.random() * legends.length)];
+    let index = Math.floor(Math.random() * legendsCopy.length);
+    let selectALegend = legendsCopy[index];
+
+    //Remove selected legend from the pool of legends in array
+
+    legendsCopy.splice(index, 1);
+    
     const data = {
       weapon: selectALegend.legend,
       img: selectALegend.img,

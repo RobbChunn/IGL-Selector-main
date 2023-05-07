@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import React from 'react';
 import { GiPistolGun } from "react-icons/gi";
 import { AiOutlineReload } from "react-icons/ai";
 import { GiDiceTarget } from "react-icons/gi";
@@ -12,7 +13,7 @@ import {
   BrokenMoon,
 } from "../dictionaries/POIs";
 
-const Form = () => {
+const Trios = () => {
   const [username1, setUsername1] = useState("");
   const [username2, setUsername2] = useState("");
   const [username3, setUsername3] = useState("");
@@ -21,6 +22,7 @@ const Form = () => {
   const [poi, setPoi] = useState("");
   const [randomPoi, setRandomPoi] = useState("");
   const [selectIgl, setIgl] = useState("");
+  const [columns3] = useState(3);
 
   useEffect(() => {}, [loadoutLoaded]);
 
@@ -39,17 +41,12 @@ const Form = () => {
   const usernames = [username1, username2, username3];
   // Enter the people playing and select one at random as IGL
   const getIgl = () => {
-    let randomIgl;
-    if (!username3) {
-      randomIgl = Math.floor(Math.random() * usernames.length);
-    } else {
-      randomIgl = Math.floor(Math.random() * (usernames.length));
-    }
+    let randomIgl = Math.floor(Math.random() * usernames.length);
     const igl = usernames[randomIgl];
     console.log(igl);
     setIgl(igl);
   };
-  
+
   const handleSubmission = (e) => {
     e.preventDefault();
     setLoadoutLoaded(true);
@@ -87,7 +84,7 @@ const Form = () => {
     //Remove selected legend from the pool of legends in array
 
     legendsCopy.splice(index, 1);
-    
+
     const data = {
       weapon: selectALegend.legend,
       img: selectALegend.img,
@@ -146,8 +143,8 @@ const Form = () => {
   };
 
   return (
-    <div class="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 lg:px-8">
-      <div class="max-w-lg mx-auto">
+    <div className="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 lg:px-8">
+      <div className="max-w-lg mx-auto">
         {/* <p class="max-w-md mx-auto mt-4 text-center text-gray-500">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati
           sunt dolores deleniti inventore quaerat mollitia?
@@ -156,96 +153,103 @@ const Form = () => {
           ""
         ) : (
           <>
-            <h1 class="text-2xl font-bold text-center text-indigo-600 sm:text-3xl">
+            <h1 className="text-2xl font-bold text-center text-indigo-600 sm:text-3xl">
               Enter teammates below:
             </h1>
             <form
               action=""
-              class="p-8 mt-6 mb-0 space-y-4 rounded-lg shadow-2xl bg-apexred-900"
+              className="p-8 mt-6 mb-0 space-y-4 rounded-lg shadow-2xl bg-apexred-900"
               onSubmit={handleSubmission}
             >
               {/* <p class="text-lg font-medium">Sign in to your account</p> */}
 
               <div>
-                <label for="team1" class="relative text-sm font-medium">
+                <label for="team1" className="relative text-sm font-medium">
                   Teammate 1
-                  <div class="flex mt-2">
-                    <span class="animate-ping w-2.5 h-2.5 bg-green rounded-full absolute top-0 left-24"></span>
-                    <span class="w-2.5 h-2.5 absolute top-0 left-28 text-xs">
+                  <div className="flex mt-2">
+                    <span className="animate-ping w-2.5 h-2.5 bg-green rounded-full absolute top-0 left-24"></span>
+                    <span className="w-2.5 h-2.5 absolute top-0 left-28 text-xs">
                       required
                     </span>
-                    <span class="w-2.5 h-2.5 bg-green rounded-full absolute top-0 left-24"></span>
+                    <span className="w-2.5 h-2.5 bg-green rounded-full absolute top-0 left-24"></span>
                   </div>
                 </label>
 
-                <div class="relative mt-1">
+                <div className="relative mt-1">
                   <input
                     type="team1"
                     id="team1"
-                    class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                    className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                     placeholder="username1"
                     onChange={updateUsername1}
                     required={true}
                   />
 
-                  <span class="absolute inset-y-0 inline-flex items-center right-4">
+                  <span className="absolute inset-y-0 inline-flex items-center right-4">
                     <GiPistolGun />
                   </span>
                 </div>
               </div>
 
               <div>
-                <label for="team2" class="relative text-sm font-medium">
+                <label for="team2" className="relative text-sm font-medium">
                   Teammate 2
-                  <div class="flex mt-2">
-                    <span class="animate-ping w-2.5 h-2.5 bg-green rounded-full absolute top-0 left-24"></span>
-                    <span class="w-2.5 h-2.5 absolute top-0 left-28 text-xs">
+                  <div className="flex mt-2">
+                    <span className="animate-ping w-2.5 h-2.5 bg-green rounded-full absolute top-0 left-24"></span>
+                    <span className="w-2.5 h-2.5 absolute top-0 left-28 text-xs">
                       required
                     </span>
-                    <span class="w-2.5 h-2.5 bg-green rounded-full absolute top-0 left-24"></span>
+                    <span className="w-2.5 h-2.5 bg-green rounded-full absolute top-0 left-24"></span>
                   </div>
                 </label>
 
-                <div class="relative mt-1">
+                <div className="relative mt-1">
                   <input
                     type="team2"
                     id="team2"
-                    class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                    className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                     placeholder="username2"
                     onChange={updateUsername2}
                     required={true}
                   />
 
-                  <span class="absolute inset-y-0 inline-flex items-center right-4">
+                  <span className="absolute inset-y-0 inline-flex items-center right-4">
                     <GiPistolGun />
                   </span>
                 </div>
               </div>
 
               <div>
-                <label for="team3" class="text-sm font-medium">
+                <label for="team3" className="text-sm font-medium">
                   Teammate 3
+                  <div className="flex mt-2">
+                    <span className="animate-ping w-2.5 h-2.5 bg-green rounded-full absolute top-0 left-24"></span>
+                    <span className="w-2.5 h-2.5 absolute top-0 left-28 text-xs">
+                      required
+                    </span>
+                    <span className="w-2.5 h-2.5 bg-green rounded-full absolute top-0 left-24"></span>
+                  </div>
                 </label>
 
-                <div class="relative mt-1">
+                <div className="relative mt-1">
                   <input
                     type="team3"
                     id="team3"
-                    class="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                    className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                     placeholder="username3"
                     onChange={updateUsername3}
                   />
 
-                  <span class="absolute inset-y-0 inline-flex items-center right-4">
+                  <span className="absolute inset-y-0 inline-flex items-center right-4">
                     <GiPistolGun />
                   </span>
                 </div>
               </div>
 
-              <div class="grid grid-cols-2 gap-8 lg:grid-cols-2">
-                <div class="relative">
+              <div className="grid grid-cols-2 gap-8 lg:grid-cols-2">
+                <div className="relative">
                   <input
-                    class="hidden group peer"
+                    className="hidden group peer"
                     type="radio"
                     name="mapOption"
                     value="kingscanyon"
@@ -254,21 +258,21 @@ const Form = () => {
                   />
 
                   <label
-                    class="block p-4 text-sm font-medium transition-colors border border-gray-100 rounded-lg shadow-sm cursor-pointer peer-checked:border-blue-500 hover:bg-white peer-checked:ring-1 peer-checked:bg-white"
+                    className="block p-4 text-sm font-medium transition-colors border border-gray-100 rounded-lg shadow-sm cursor-pointer peer-checked:border-blue-500 hover:bg-white peer-checked:ring-1 peer-checked:bg-white"
                     for="kingscanyon"
                   >
                     <span> Kings Canyon </span>
 
                     <img
-                      class="object-cover h-32 w-full"
+                      className="object-cover h-32 w-full"
                       src={Maps.KingsCanyon}
                     />
                   </label>
                 </div>
 
-                <div class="relative">
+                <div className="relative">
                   <input
-                    class="hidden group peer"
+                    className="hidden group peer"
                     type="radio"
                     name="mapOption"
                     value="BrokenMoon"
@@ -277,21 +281,21 @@ const Form = () => {
                   />
 
                   <label
-                    class="block p-4 text-sm font-medium transition-colors border border-gray-100 rounded-lg shadow-sm cursor-pointer peer-checked:border-blue-500 hover:bg-white peer-checked:ring-1 peer-checked:bg-white"
+                    className="block p-4 text-sm font-medium transition-colors border border-gray-100 rounded-lg shadow-sm cursor-pointer peer-checked:border-blue-500 hover:bg-white peer-checked:ring-1 peer-checked:bg-white"
                     for="BrokenMoon"
                   >
                     <span> Broken Moon </span>
 
                     <img
-                      class="object-cover h-32 w-full"
+                      className="object-cover h-32 w-full"
                       src={Maps.BrokenMoon}
                     />
                   </label>
                 </div>
 
-                <div class="relative">
+                <div className="relative">
                   <input
-                    class="hidden group peer"
+                    className="hidden group peer"
                     type="radio"
                     name="mapOption"
                     value="worldsedge"
@@ -300,20 +304,20 @@ const Form = () => {
                   />
 
                   <label
-                    class="block p-4 text-sm font-medium transition-colors border border-gray-100 rounded-lg shadow-sm cursor-pointer peer-checked:border-blue-500 hover:bg-white peer-checked:ring-1 peer-checked:bg-white"
+                    className="block p-4 text-sm font-medium transition-colors border border-gray-100 rounded-lg shadow-sm cursor-pointer peer-checked:border-blue-500 hover:bg-white peer-checked:ring-1 peer-checked:bg-white"
                     for="worldsedge"
                   >
                     <span> Worlds Edge </span>
 
                     <img
-                      class="object-cover h-32 w-full"
+                      className="object-cover h-32 w-full"
                       src={Maps.WorldsEdge}
                     />
                   </label>
                 </div>
-                <div class="relative">
+                <div className="relative">
                   <input
-                    class="hidden group peer"
+                    className="hidden group peer"
                     type="radio"
                     name="mapOption"
                     value="stormpoint"
@@ -322,20 +326,20 @@ const Form = () => {
                   />
 
                   <label
-                    class="block p-4 text-sm font-medium transition-colors border border-gray-100 rounded-lg shadow-sm cursor-pointer peer-checked:border-blue-500 hover:bg-white peer-checked:ring-1 peer-checked:bg-white"
+                    className="block p-4 text-sm font-medium transition-colors border border-gray-100 rounded-lg shadow-sm cursor-pointer peer-checked:border-blue-500 hover:bg-white peer-checked:ring-1 peer-checked:bg-white"
                     for="stormpoint"
                   >
                     <span> Stormpoint </span>
 
                     <img
-                      class="object-cover h-32 w-full"
+                      className="object-cover h-32 w-full"
                       src={Maps.Stormpoint}
                     />
                   </label>
                 </div>
-                <div class="relative">
+                <div className="relative">
                   <input
-                    class="hidden group peer"
+                    className="hidden group peer"
                     type="radio"
                     name="mapOption"
                     value="olympus"
@@ -344,19 +348,19 @@ const Form = () => {
                   />
 
                   <label
-                    class="block p-4 text-sm font-medium transition-colors border border-gray-100 rounded-lg shadow-sm cursor-pointer peer-checked:border-blue-500 hover:bg-white peer-checked:ring-1 peer-checked:bg-white"
+                    className="block p-4 text-sm font-medium transition-colors border border-gray-100 rounded-lg shadow-sm cursor-pointer peer-checked:border-blue-500 hover:bg-white peer-checked:ring-1 peer-checked:bg-white"
                     for="olympus"
                   >
                     <span> Olympus </span>
 
-                    <img class="object-cover h-32 w-full" src={Maps.Olympus} />
+                    <img className="object-cover h-32 w-full" src={Maps.Olympus} />
                   </label>
                 </div>
               </div>
 
               <button
                 type="submit"
-                class="block w-full px-5 py-3 text-sm font-medium text-white bg-indigo-600 rounded-lg bg-apexblue"
+                className="block w-full px-5 py-3 text-sm font-medium text-white bg-indigo-600 rounded-lg bg-apexblue"
               >
                 Ready Up
               </button>
@@ -375,32 +379,37 @@ const Form = () => {
       {loadoutLoaded === true && (
         <>
           {" "}
-          <div class="block m-auto flex gap-x-4">
+          <div className="block m-auto flex gap-x-4">
             <button
-              class="flex items-center justify-center text-sm px-8 py-4 font-bold transition bg-green-100 border-4 border-black rounded-xl focus:outline-none focus:ring shadow-[6px_6px_0_0_#000] hover:shadow-none active:bg-green-50 w-64 h-20 m-auto"
+              className="flex items-center justify-center text-sm px-8 py-4 font-bold transition bg-green-100 border-4 border-black rounded-xl focus:outline-none focus:ring shadow-[6px_6px_0_0_#000] hover:shadow-none active:bg-green-50 w-64 h-20 m-auto"
               onClick={() => setLoadoutLoaded(false)}
             >
               New Loadout{" "}
-              <span aria-hidden="true" class="ml-2 text-lg" role="img">
+              <span aria-hidden="true" className="ml-2 text-lg" role="img">
                 <AiOutlineReload />
               </span>
             </button>
 
             <button
-              class="flex items-center justify-center text-sm px-8 py-4 font-bold transition bg-green-100 border-4 border-black rounded-xl focus:outline-none focus:ring shadow-[6px_6px_0_0_#000] hover:shadow-none active:bg-green-50 w-64 h-20 m-auto"
+              className="flex items-center justify-center text-sm px-8 py-4 font-bold transition bg-green-100 border-4 border-black rounded-xl focus:outline-none focus:ring shadow-[6px_6px_0_0_#000] hover:shadow-none active:bg-green-50 w-64 h-20 m-auto"
               onClick={() => generateLoadout()}
             >
               Reroll{" "}
-              <span aria-hidden="true" class="ml-2 text-lg" role="img">
+              <span aria-hidden="true" className="ml-2 text-lg" role="img">
                 <GiDiceTarget />
               </span>
             </button>
           </div>
-          <LoadoutGrid loadouts={loadout} poi={randomPoi} selectIgl={selectIgl} />
+          <LoadoutGrid
+            loadouts={loadout}
+            poi={randomPoi}
+            selectIgl={selectIgl}
+            numberOfColumns={columns3}
+          />
         </>
       )}
     </div>
   );
 };
 
-export default Form;
+export default Trios;
